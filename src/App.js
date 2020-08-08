@@ -1,26 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import firebase from './firebase';
 import './App.css';
+import DisplayedSuggestions from './DisplayedSuggestions';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// Pseudocode
+
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      suggestions: []
+    }
+  }
+
+  componentDidMount() {
+    const dbRef = firebase.database().ref();
+
+    dbRef.on('value', (snapshot) => {
+      const data = snapshot.val();
+      console.log(data);
+
+      const newArray = [];
+
+      for (let propName in data) {
+        newArray.push( data[propName]);
+      }
+
+      console.log(newArray);
+
+      this.setState({
+        suggestions: newArray
+      })
+
+    })
+  }
+
+
+
+  render () {
+    return (
+      <div className="App">
+        <h1>Tell Me Where To Travel</h1>
+        <ul>
+          {
+            this.state.suggestions.map ( (suggestion, index) => {
+            return <DisplayedSuggestions travelTip={suggestion} key={index} />
+            })
+          }
+
+        </ul>
+      </div>
+    );
+  }
 }
 
 export default App;
