@@ -18,7 +18,8 @@ class App extends Component {
     this.state = {
       userInputDestination: '',
       userInputAdvice: '',
-      suggestions: []
+      suggestions: [],
+      photo: []
     }
   }
 
@@ -42,6 +43,7 @@ class App extends Component {
         suggestions: newSuggestions
       })
     })
+
   }
 
   // onChange event handler for when user types their destination
@@ -49,6 +51,26 @@ class App extends Component {
     this.setState({
       userInputDestination: event.target.value
     })
+
+    // // API CALL
+    // axios({
+    //   url: `https://www.rijksmuseum.nl/api/en/collection`,
+    //   method: `GET`,
+    //   responseType: `json`,
+    //   params: {
+    //     key: `m6u9SwrU`,
+    //     format: `json`,
+    //     hasImage: true,
+    //     ps: 1,
+    //     q: event.target.value
+    //   }
+    // })
+    // .then((response) => {
+    //   console.log(response);
+    //   this.setState({
+    //     photo: response
+    //   });
+    // })
   }
 
   // onChange event handler for when user types their travel advice
@@ -92,6 +114,8 @@ class App extends Component {
 
           <label htmlFor="advice">What should I do there?</label>
           <input onChange={this.handleChangeAdvice} value={this.state.userInputAdvice} type="text" id="advice" />
+
+          <img src={this.state.photo} alt=""/>
 
           <button onClick={this.buttonSubmit}>Submit</button>
         </form>
