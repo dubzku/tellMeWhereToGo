@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 // import axios from 'axios';
 import firebase from './firebase';
 import './App.css';
-import DisplayedSuggestions from './DisplayedSuggestions';
 
-// Pseudocode for MVPs
-
-// What does the app do? 
-  // User comes to the landing page, and sees 2 inputs: (1) Enter the name of a country/city you would recommend travelling to (2) Enter a travel suggestion for that place
-  // User enters their travel tip, and presses submit
+// PSEUDOCODE for MVPs
+// User comes to the landing page, and sees 2 inputs: 
+  // (1) Enter the name of a place you would recommend travelling to
+  // (2) Enter a suggestion of something to do at that place
+// User types their answer in both fields, and hits Submit
 // The data is stored in Firebase object
 // Data is pulled from Firebase, and displayed on the page 
 
@@ -17,78 +16,68 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      userInputCountry: "",
-      userInputAdvice: "",
+      userInputDestination: '',
+      userInputAdvice: '',
       suggestions: []
     }
   }
 
   componentDidMount () {
-
     const dbRef = firebase.database().ref();
 
     dbRef.on('value', (snapshot) => {
       const data = snapshot.val();
-      console.log('snapshot data', data);
 
-      const newArray = [];
+      const newSuggestions = [];
 
       for (let key in data) {
-        newArray.push({
+        newSuggestions.push({
           key: key,
-          country: data[key].country,
+          destination: data[key].destination,
           advice: data[key].advice
         });
       }
 
-      console.log("newArray", newArray);
-
       this.setState({
-        suggestions: newArray
+        suggestions: newSuggestions
       })
-
     })
   }
 
-  handleChangeCountry = (event) => {
+  // onChange event handler for when user types their destination
+  handleChangeDestination = (event) => {
     this.setState({
-      userInputCountry: event.target.value
-    }, () => {
-      console.log(this.state.userInputCountry);
+      userInputDestination: event.target.value
     })
   }
 
+  // onChange event handler for when user types their travel advice
   handleChangeAdvice = (event) => {
     this.setState({
       userInputAdvice: event.target.value
-    }, () => {
-      console.log(this.state.userInputAdvice);
     })
   }
 
-  handleClick = (event) => {
+  // onClick event for when user clicks Submit button 
+  buttonSubmit = (event) => {
     event.preventDefault();
 
     const dbRef = firebase.database().ref();
 
-    console.log("dbRef", dbRef);
-
     dbRef.push({
-      country: this.state.userInputCountry,
+      destination: this.state.userInputDestination,
       advice: this.state.userInputAdvice
     });
 
     this.setState({
-      userInputCountry: "",
+      userInputDestination: "",
       userInputAdvice: ""
     })
   }
 
   deleteSuggestion = (suggestion) => {
-    console.log(suggestion);
     const dbRef = firebase.database().ref();
     dbRef.child(suggestion).remove();
-
   }
 
 
@@ -96,34 +85,29 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Tell Me Where To Travel</h1>
+
         <form action="">
-          <label htmlFor="destination">Country:</label>
-          <input onChange={this.handleChangeCountry} value={this.state.userInputCountry} type="text" id="destination" />
-          <label htmlFor="travelTip">Advice:</label>
-          <input onChange={this.handleChangeAdvice} value={this.state.userInputAdvice} type="text" id="travelTip" />
-          <button onClick={this.handleClick}>Add Reco</button>
+          <label htmlFor="destination">Where should I go?</label>
+          <input onChange={this.handleChangeDestination} value={this.state.userInputDestination} type="text" id="destination" />
+
+          <label htmlFor="advice">What should I do there?</label>
+          <input onChange={this.handleChangeAdvice} value={this.state.userInputAdvice} type="text" id="advice" />
+
+          <button onClick={this.buttonSubmit}>Submit</button>
         </form>
         <ul>
           {
-            this.state.suggestions.map ( (suggestion, index) => {
+            this.state.suggestions.map ( (suggestion) => {
             return (
-              
-              <DisplayedSuggestions 
-              travelTip={suggestion.country} 
-              travelAdvice={suggestion.advice}
-              key={index} 
-              suggestionRemoval = {() => this.deleteSuggestion(index)}
-              />
-
+              <li key={suggestion.key}>
+                <p>Country: {suggestion.destination}</p>
+                <p>Advice: {suggestion.advice}</p>
+                <button onClick={ () => this.deleteSuggestion(suggestion.key)}>Been there!</button>
+              </li>
             )
-            })
+          })
           }
         </ul>
-        
-
-          
-
-        
       </div>
     );
   }
