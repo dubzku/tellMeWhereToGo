@@ -4,7 +4,9 @@ class DisplayedSuggestions extends Component {
     render() {
         return (
             <li>
-                <p>{this.props.travelTip}</p>
+                <p>Country: {this.props.travelTip}</p>
+                <p>Advice: {this.props.travelAdvice}</p>
+                <button>Been there!</button>
             </li>
         )
     }
