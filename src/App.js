@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
 import firebase from './firebase';
+import Form from './Form';
+import TravelAdvice from './TravelAdvice'
 import './App.css';
 
 // PSEUDOCODE for MVPs
@@ -16,8 +18,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      userInputDestination: '',
-      userInputAdvice: '',
       suggestions: [],
       photo: []
     }
@@ -46,12 +46,6 @@ class App extends Component {
 
   }
 
-  // onChange event handler for when user types their destination
-  handleChangeDestination = (event) => {
-    this.setState({
-      userInputDestination: event.target.value
-    })
-
     // // API CALL
     // axios({
     //   url: `https://www.rijksmuseum.nl/api/en/collection`,
@@ -71,67 +65,26 @@ class App extends Component {
     //     photo: response
     //   });
     // })
-  }
-
-  // onChange event handler for when user types their travel advice
-  handleChangeAdvice = (event) => {
-    this.setState({
-      userInputAdvice: event.target.value
-    })
-  }
-
-  // onClick event for when user clicks Submit button 
-  buttonSubmit = (event) => {
-    event.preventDefault();
-
-    const dbRef = firebase.database().ref();
-
-    dbRef.push({
-      destination: this.state.userInputDestination,
-      advice: this.state.userInputAdvice
-    });
-
-    this.setState({
-      userInputDestination: "",
-      userInputAdvice: ""
-    })
-  }
+  // }
 
   deleteSuggestion = (suggestion) => {
     const dbRef = firebase.database().ref();
     dbRef.child(suggestion).remove();
   }
 
-
   render () {
     return (
-      <div className="App">
-        <h1>Tell Me Where To Travel</h1>
+      <div className="App wrapper">
 
-        <form action="">
-          <label htmlFor="destination">Where should I go?</label>
-          <input onChange={this.handleChangeDestination} value={this.state.userInputDestination} type="text" id="destination" />
+        <Form 
+        userSubmit={ this.buttonSubmit } 
+        />
 
-          <label htmlFor="advice">What should I do there?</label>
-          <input onChange={this.handleChangeAdvice} value={this.state.userInputAdvice} type="text" id="advice" />
+        <TravelAdvice 
+        displayedAdvice= {this.state.suggestions} 
+        deleteAdvice= { this.deleteSuggestion } 
+        />
 
-          <img src={this.state.photo} alt=""/>
-
-          <button onClick={this.buttonSubmit}>Submit</button>
-        </form>
-        <ul>
-          {
-            this.state.suggestions.map ( (suggestion) => {
-            return (
-              <li key={suggestion.key}>
-                <p>Country: {suggestion.destination}</p>
-                <p>Advice: {suggestion.advice}</p>
-                <button onClick={ () => this.deleteSuggestion(suggestion.key)}>Been there!</button>
-              </li>
-            )
-          })
-          }
-        </ul>
       </div>
     );
   }
