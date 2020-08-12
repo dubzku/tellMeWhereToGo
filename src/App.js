@@ -45,28 +45,7 @@ class App extends Component {
     })
 
   }
-
-    // // API CALL
-    // axios({
-    //   url: `https://www.rijksmuseum.nl/api/en/collection`,
-    //   method: `GET`,
-    //   responseType: `json`,
-    //   params: {
-    //     key: `m6u9SwrU`,
-    //     format: `json`,
-    //     hasImage: true,
-    //     ps: 1,
-    //     q: event.target.value
-    //   }
-    // })
-    // .then((response) => {
-    //   console.log(response);
-    //   this.setState({
-    //     photo: response
-    //   });
-    // })
-  // }
-
+    
   deleteSuggestion = (suggestion) => {
     const dbRef = firebase.database().ref();
     dbRef.child(suggestion).remove();
@@ -91,3 +70,7 @@ class App extends Component {
 }
 
 export default App;
+
+
+
+
