@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8dac44eae33ee3cf9252a63d828d4ba4",
+    "revision": "5bb9ca1720ea0c9894ec5821658822e8",
     "url": "/winnieKuProjectFive/index.html"
   },
   {
-    "revision": "ebc56cbe2ea12a050d68",
-    "url": "/winnieKuProjectFive/static/css/main.a7082a66.chunk.css"
+    "revision": "f54087a808cc8496b7ad",
+    "url": "/winnieKuProjectFive/static/css/main.b4bfb565.chunk.css"
   },
   {
-    "revision": "a47be5a0583272b29e28",
-    "url": "/winnieKuProjectFive/static/js/2.58273243.chunk.js"
+    "revision": "1506085e226da8395f1c",
+    "url": "/winnieKuProjectFive/static/js/2.916d6b60.chunk.js"
   },
   {
     "revision": "70d88436874ad6f0b4ff8dc0e5c19c4e",
-    "url": "/winnieKuProjectFive/static/js/2.58273243.chunk.js.LICENSE.txt"
+    "url": "/winnieKuProjectFive/static/js/2.916d6b60.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ebc56cbe2ea12a050d68",
-    "url": "/winnieKuProjectFive/static/js/main.cf4f505c.chunk.js"
+    "revision": "f54087a808cc8496b7ad",
+    "url": "/winnieKuProjectFive/static/js/main.2a0f71ac.chunk.js"
   },
   {
     "revision": "f0137b91829c47c0351a",

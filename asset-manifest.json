@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/winnieKuProjectFive/static/css/main.a7082a66.chunk.css",
-    "main.js": "/winnieKuProjectFive/static/js/main.cf4f505c.chunk.js",
-    "main.js.map": "/winnieKuProjectFive/static/js/main.cf4f505c.chunk.js.map",
+    "main.css": "/winnieKuProjectFive/static/css/main.b4bfb565.chunk.css",
+    "main.js": "/winnieKuProjectFive/static/js/main.2a0f71ac.chunk.js",
+    "main.js.map": "/winnieKuProjectFive/static/js/main.2a0f71ac.chunk.js.map",
     "runtime-main.js": "/winnieKuProjectFive/static/js/runtime-main.1aeff3f1.js",
     "runtime-main.js.map": "/winnieKuProjectFive/static/js/runtime-main.1aeff3f1.js.map",
-    "static/js/2.58273243.chunk.js": "/winnieKuProjectFive/static/js/2.58273243.chunk.js",
-    "static/js/2.58273243.chunk.js.map": "/winnieKuProjectFive/static/js/2.58273243.chunk.js.map",
+    "static/js/2.916d6b60.chunk.js": "/winnieKuProjectFive/static/js/2.916d6b60.chunk.js",
+    "static/js/2.916d6b60.chunk.js.map": "/winnieKuProjectFive/static/js/2.916d6b60.chunk.js.map",
     "index.html": "/winnieKuProjectFive/index.html",
-    "precache-manifest.72bd3f7f24d8a175137284a453b0d98a.js": "/winnieKuProjectFive/precache-manifest.72bd3f7f24d8a175137284a453b0d98a.js",
+    "precache-manifest.f47835672af6e9f44b7aebe7e2319466.js": "/winnieKuProjectFive/precache-manifest.f47835672af6e9f44b7aebe7e2319466.js",
     "service-worker.js": "/winnieKuProjectFive/service-worker.js",
-    "static/css/main.a7082a66.chunk.css.map": "/winnieKuProjectFive/static/css/main.a7082a66.chunk.css.map",
-    "static/js/2.58273243.chunk.js.LICENSE.txt": "/winnieKuProjectFive/static/js/2.58273243.chunk.js.LICENSE.txt",
+    "static/css/main.b4bfb565.chunk.css.map": "/winnieKuProjectFive/static/css/main.b4bfb565.chunk.css.map",
+    "static/js/2.916d6b60.chunk.js.LICENSE.txt": "/winnieKuProjectFive/static/js/2.916d6b60.chunk.js.LICENSE.txt",
     "static/media/App.css": "/winnieKuProjectFive/static/media/linedpaper.8939bf29.png",
     "static/media/origami.png": "/winnieKuProjectFive/static/media/origami.c4714cd6.png"
   },
   "entrypoints": [
     "static/js/runtime-main.1aeff3f1.js",
-    "static/js/2.58273243.chunk.js",
-    "static/css/main.a7082a66.chunk.css",
-    "static/js/main.cf4f505c.chunk.js"
+    "static/js/2.916d6b60.chunk.js",
+    "static/css/main.b4bfb565.chunk.css",
+    "static/js/main.2a0f71ac.chunk.js"
   ]
 }
