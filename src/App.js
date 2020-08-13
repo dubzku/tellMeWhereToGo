@@ -15,7 +15,8 @@ class App extends Component {
         userInputDestination: "",
         userInputAdvice: "",
         suggestions: [],
-        destinationPhoto: ""
+        destinationPhoto: "",
+        photographerName: ""
         }
     }
 
@@ -26,6 +27,7 @@ class App extends Component {
         // pulling in data from Firebase and setting it to state 
         dbRef.on("value", (snapshot) => {
             const data = snapshot.val();
+            console.log(data);
 
             const newSuggestions = [];
 
@@ -34,7 +36,8 @@ class App extends Component {
                 key: key,
                 destination: data[key].destination,
                 advice: data[key].advice,
-                photo: data[key].photo
+                photo: data[key].photo,
+                photographerName: data[key].photographerName
                 });
             }
 
@@ -58,6 +61,7 @@ class App extends Component {
         // (4) set destinationPhoto in state to be the url for the image returned from the API 
         // (5) push userInputDestination, userInputAdvice, and destinationPhoto from state to Firebase
         // (6) set state for userInputDestination and userInputAdvice back to an empty string
+        // (7) scroll the window to the bottom of the page where the results are
     buttonSubmit = (event) => {
         event.preventDefault();
 
@@ -81,14 +85,17 @@ class App extends Component {
             }
         })
         .then ((response) => {
+            console.log(response);
             this.setState({
-                destinationPhoto: response.data.photos[0].src.small
+                destinationPhoto: response.data.photos[0].src.landscape,
+                photographerName: response.data.photos[0].photographer
             });
 
             dbRef.push({
                 destination: this.state.userInputDestination,
                 advice: this.state.userInputAdvice,
-                photo: this.state.destinationPhoto
+                photo: this.state.destinationPhoto,
+                photographerName: this.state.photographerName
             });
 
             this.setState({
@@ -96,11 +103,13 @@ class App extends Component {
                 userInputAdvice: ""
             });
 
-            
+            window.scrollTo({ 
+                top: document.body.scrollHeight, 
+                behavior: 'smooth' })
             
         })
         .catch((error) => {
-            alert("Sorry, we can't find that place!")
+            alert("Are you sure that's a real place?")
         });
     }
     
