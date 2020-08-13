@@ -58,6 +58,10 @@ button {
   cursor: pointer;
 }
 
+a {
+  color: #000;
+}
+
 /* Header Styles */
 
 header {
@@ -88,7 +92,7 @@ label {
 input, textarea {
   width: 100%;
   background: none;
-  border: black solid 1px;
+  border: #000 solid 1px;
   padding: 15px;
   margin: 10px 0;
   font-size: 0.9rem;
@@ -105,7 +109,7 @@ textarea {
 .submitButton {
   background: #e63946;
   color: #FFF;
-  border: solid black 1px;
+  border: solid #000 1px;
   border-radius: 8px;
   padding: 15px 20px;
   margin: 15px auto;
@@ -169,25 +173,28 @@ ul li:focus {
 }
 
 .imageContainer {
-  width: 175px;
+  width: 180px;
   margin: 10px auto;
 }
 
 .imageContainer img {
-  border: solid black 1px;
+  border: solid #000 1px;
   margin: 0 auto;
 }
 
 .deletePostIt {
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 1rem;
+  font-size: 1.5rem;
   background: none;
-  border: black solid 1px;
+  border: none;
   padding: 10px 15px;
-  border-radius: 50%;
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+.deletePostIt:hover,
+.deletePostIt:focus {
+  transform: scale(1.2);
 }
 
 /* Footer Styles */

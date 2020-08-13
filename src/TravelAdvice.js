@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 const TravelAdvice = (props) => {
     return (
@@ -15,7 +17,7 @@ const TravelAdvice = (props) => {
                                     <div className="imageContainer">
                                         <img src={suggestion.photo} alt={suggestion.destination}/>
                                     </div>
-                                    <button onClick={ () => props.deleteAdvice (suggestion.key) } className="deletePostIt">X</button>
+                                    <button onClick={ () => props.deleteAdvice (suggestion.key) } className="deletePostIt"><FontAwesomeIcon icon={faTimes} /></button>
                                 
                             </li>
                         )

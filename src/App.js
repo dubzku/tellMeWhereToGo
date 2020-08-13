@@ -95,6 +95,9 @@ class App extends Component {
                 userInputDestination: "",
                 userInputAdvice: ""
             });
+
+            
+            
         })
         .catch((error) => {
             alert("Sorry, we can't find that place!")
