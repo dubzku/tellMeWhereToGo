@@ -1,93 +1,150 @@
-import React, { Component } from 'react';
-// import axios from 'axios';
-import firebase from './firebase';
-import Form from './Form';
-import TravelAdvice from './TravelAdvice'
-import './App.css';
-
-// PSEUDOCODE for MVPs
-// User comes to the landing page, and sees 2 inputs: 
-  // (1) Enter the name of a place you would recommend travelling to
-  // (2) Enter a suggestion of something to do at that place
-// User types their answer in both fields, and hits Submit
-// The data is stored in Firebase object
-// Data is pulled from Firebase, and displayed on the page 
+import React, { Component } from "react";
+import axios from "axios";
+import firebase from "./firebase";
+import TravelAdvice from "./TravelAdvice"
+import paperPlane from "./assets/origami.png";
+import "./App.css";
 
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      suggestions: [],
-      photo: []
+    // Lifecycle Step #1 - Constructor runs first - set the initial properties (ie state) on the component
+    constructor() {
+        super();
+        this.state = {
+        userInputDestination: "",
+        userInputAdvice: "",
+        suggestions: [],
+        destinationPhoto: ""
+        }
     }
-  }
 
-  componentDidMount () {
-    const dbRef = firebase.database().ref();
+    // Lifecycle Step #3 - componentDidMount() runs third, after the constructor and render have run
+    componentDidMount () {
+        const dbRef = firebase.database().ref();
 
-    dbRef.on('value', (snapshot) => {
-      const data = snapshot.val();
+        // pulling in data from Firebase and setting it to state 
+        dbRef.on("value", (snapshot) => {
+            const data = snapshot.val();
 
-      const newSuggestions = [];
+            const newSuggestions = [];
 
-      for (let key in data) {
-        newSuggestions.push({
-          key: key,
-          destination: data[key].destination,
-          advice: data[key].advice
-        });
-      }
+            for (let key in data) {
+                newSuggestions.push({
+                key: key,
+                destination: data[key].destination,
+                advice: data[key].advice,
+                photo: data[key].photo
+                });
+            }
 
-      this.setState({
-        suggestions: newSuggestions
-      })
+            this.setState({
+                suggestions: newSuggestions
+            })
+        })
+    }
+
+    // Event Listener for when user types in the text input/textarea fields; set the state for userInputDestination and userInputAdvice to be whatever the user typed
+    handleChange = (event) => {
+    this.setState({
+        [event.target.name]: event.target.value
     })
+    }
 
-  }
+    // on button submit: 
+        // (1) prevent default
+        // (2) error handling for if the user did not fill in both fields 
+        // (3) make API/axios call to Pexels API using userInputDestination as the query 
+        // (4) set destinationPhoto in state to be the url for the image returned from the API 
+        // (5) push userInputDestination, userInputAdvice, and destinationPhoto from state to Firebase
+        // (6) set state for userInputDestination and userInputAdvice back to an empty string
+    buttonSubmit = (event) => {
+        event.preventDefault();
 
-    // // API CALL
-    // axios({
-    //   url: `https://www.rijksmuseum.nl/api/en/collection`,
-    //   method: `GET`,
-    //   responseType: `json`,
-    //   params: {
-    //     key: `m6u9SwrU`,
-    //     format: `json`,
-    //     hasImage: true,
-    //     ps: 1,
-    //     q: event.target.value
-    //   }
-    // })
-    // .then((response) => {
-    //   console.log(response);
-    //   this.setState({
-    //     photo: response
-    //   });
-    // })
-  // }
+        const dbRef = firebase.database().ref();
 
-  deleteSuggestion = (suggestion) => {
-    const dbRef = firebase.database().ref();
-    dbRef.child(suggestion).remove();
-  }
+        const apiKey = `563492ad6f917000010000017a8698fdc0aa4677b4cda27aa4991d1a`;
 
-  render () {
-    return (
-      <div className="App wrapper">
+        !document.getElementById("destination").value || !document.getElementById("advice").value
+        ? alert("Please fill in both fields!")
+        : axios({
+            url: `https://api.pexels.com/v1/search`,
+            method: `GET`,
+            responseType: `json`,
+            params: {
+                dataType: `json`,
+                per_page: 1,
+                query: `${this.state.userInputDestination}`
+            },
+            headers: {
+                Authorization: `Bearer ${apiKey}`
+            }
+        })
+        .then ((response) => {
+            this.setState({
+                destinationPhoto: response.data.photos[0].src.small
+            });
 
-        <Form 
-        userSubmit={ this.buttonSubmit } 
-        />
+            dbRef.push({
+                destination: this.state.userInputDestination,
+                advice: this.state.userInputAdvice,
+                photo: this.state.destinationPhoto
+            });
 
-        <TravelAdvice 
-        displayedAdvice= {this.state.suggestions} 
-        deleteAdvice= { this.deleteSuggestion } 
-        />
+            this.setState({
+                userInputDestination: "",
+                userInputAdvice: ""
+            });
+        })
+        .catch((error) => {
+            alert("You might have a typo - we couldn't find that place!")
+        });
+    }
+    
+    // Event Listener to delete the travel suggestion on button click 
+    deleteSuggestion = (suggestion) => {
+        const dbRef = firebase.database().ref();
+        dbRef.child(suggestion).remove();
+    }
 
-      </div>
+    // Lifecycle Step #2 - Render method will run after the constructor; returns JSX to be displayed on page
+    render () {
+        return (
+            <div className="App">
+                <header>
+                    <div className="wrapper">
+                        <h1>Tell Me <span className="logoColour">Where</span> To Go</h1>
+                        <div className="logoContainer">
+                            <img src={paperPlane} alt="paper plane icon from Eight Black Dots"/>
+                        </div>
+                        <form action="">
+                            <label htmlFor="destination">Where should I go?</label>
+                            <input onChange={this.handleChange} value={this.state.userInputDestination} type="text" id="destination" name="userInputDestination" minLength="2" maxLength="15" placeholder="Enter a country / city" />
+
+                            <label htmlFor="advice">What should I do there?</label>
+                            <textarea onChange={this.handleChange} value={this.state.userInputAdvice} type="text" id="advice" name="userInputAdvice" minLength="5" maxLength="80" placeholder="Sites to see, foods to try, etc." />
+
+                            <button onClick={ this.buttonSubmit } className="submitButton">Post it!</button>
+                        </form>
+                    </div>
+                </header>
+
+                <TravelAdvice 
+                displayedAdvice= {this.state.suggestions} 
+                deleteAdvice= { this.deleteSuggestion } 
+                />
+
+                <footer>
+                        <p><span role="img" aria-label="heart emoji">♥️</span> Created by <a href="https://github.com/dubzku" target="_blank" rel="noopener noreferrer">Winnie Ku</a></p>
+                        <p className="logoAttribution"><span role="img" aria-label="airplane emoji">✈</span> Icon by <a href="https://www.flaticon.com/free-icon/paper-plane_312619?term=paper%20airplane&page=1&position=46" target="_blank" rel="noopener noreferrer" title="Eight Black Dots">Eight Black Dots</a> from <a href="https://www.flaticon.com/" target="_blank" rel="noopener noreferrer" title="Flaticon">www.flaticon.com</a></p>
+                </footer>
+
+            </div>
     );
-  }
+}
 }
 
 export default App;
+
+
+
+
