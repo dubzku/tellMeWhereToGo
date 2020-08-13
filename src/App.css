@@ -8,6 +8,14 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 
 img { max-width: 100%; height: auto; display: block;} body, h1, h2, h3, h4, h5, h6, p, ol, ul, li { margin: 0; padding: 0; font-weight: normal;} ol, ul {list-style: none;} a {text-decoration: none;}
 
+html {
+  font-size: 125%; /* 20px */
+}
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+
 .wrapper {
   max-width: 1200px;
   width: 90%;
@@ -15,44 +23,144 @@ img { max-width: 100%; height: auto; display: block;} body, h1, h2, h3, h4, h5, 
 }
 
 header {
-  height: 50vh;
+  height: 100vh;
+  background-image: url(./assets/linedpaper.png); 
+  display: flex;
+}
+
+header .wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-input {
-  width: 100%;
+.logoContainer {
+  width: 175px;
+}
+
+h1 {
+  font-size: 4rem;
+  font-family: 'Reenie Beanie', cursive;
+  text-align: center;
+}
+
+span.logoColour {
+  color: #e63946;
+}
+
+input[type="text"] {
   display: block;
-  /* border: solid 3px #a7ff00;
-  background-color: #071a0e; */
-  /* color: white; */
-  padding-left: 15px;
+  margin-bottom: 15px;
 }
 
 textarea {
   resize: none;
+}
+
+input, textarea {
   width: 100%;
-  /* border: 3px solid orange;
-  background-color: #071a0e; */
-  /* color: white; */
-  padding: 10px;
+  background: none;
+  border: black solid 1px;
+  padding: 15px;
+  margin: 10px 0;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 0.9rem;
+}
+
+.submitButton {
+  font-family: 'Ubuntu', sans-serif;
+  background: #e63946;
+  color: #FFF;
+  border: solid black 1px;
+  border-radius: 8px;
+  padding: 15px 20px;
+  margin: 15px auto;
+  display: block;
+}
+
+.submitButton:hover,
+.submitButton:focus {
+  background-color: #FFF;
+  color: #e63946;
 }
 
 .container {
-  border: 1px solid red;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 li {
-  border: 1px solid black;
-  width: calc(380px - 60px);
-  height: 300px;
+  width: calc(400px - 60px);
+  height: 325px;
   margin: 30px;
   padding: 30px;
   overflow-wrap: break-word;
+  background-color: #ff7eb9;
+  font-family: 'Reenie Beanie', cursive;
+  font-size: 2rem;
+  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+  transition: transform .15s linear;
+  position: relative;
+}
+
+ul li:nth-child(even) {
+  transform: rotate(4deg);
+  position: relative;
+  top: 5px;
+  background-color: #feff9c;
+}
+
+ul li:nth-child(3n) {
+  transform: rotate(-3deg);
+  position: relative;
+  top: -5px;
+  background-color: #7afcff;
+}
+
+ul li:nth-child(5n) {
+  transform: rotate(5deg);
+  position:relative;
+  top:-10px;
+}
+
+ul li:hover,
+ul li:focus {
+  box-shadow: 10px 10px 7px rgba(0,0,0,.7);
+  transform: scale(1.1);
+  z-index: 5;
+}
+
+.imageContainer {
+  width: 175px;
+  margin: 0 auto;
+}
+
+main {
+  background-image: url(./assets/linedpaper.png);
+  padding: 50px 0;
+}
+
+.deletePostIt {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1rem;
+  background: none;
+  border: black solid 1px;
+  padding: 10px 15px;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+footer {
+  background-color: #ff7eb9;
+  text-align: center;
+  padding: 15px 0;
+}
+
+.logoAttribution {
+  font-size: 0.8rem;
 }
 
