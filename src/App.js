@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import firebase from "./firebase";
 import TravelAdvice from "./TravelAdvice"
+import Footer from "./Footer";
 import paperPlane from "./assets/origami.png";
 import "./App.css";
 
@@ -96,7 +97,7 @@ class App extends Component {
             });
         })
         .catch((error) => {
-            alert("You might have a typo - we couldn't find that place!")
+            alert("Sorry, we can't find that place!")
         });
     }
     
@@ -113,7 +114,7 @@ class App extends Component {
                 <header>
                     <div className="wrapper">
                         <h1>Tell Me <span className="logoColour">Where</span> To Go</h1>
-                        <div className="logoContainer">
+                        <div className="logoImageContainer">
                             <img src={paperPlane} alt="paper plane icon from Eight Black Dots"/>
                         </div>
                         <form action="">
@@ -121,7 +122,7 @@ class App extends Component {
                             <input onChange={this.handleChange} value={this.state.userInputDestination} type="text" id="destination" name="userInputDestination" minLength="2" maxLength="15" placeholder="Enter a country / city" />
 
                             <label htmlFor="advice">What should I do there?</label>
-                            <textarea onChange={this.handleChange} value={this.state.userInputAdvice} type="text" id="advice" name="userInputAdvice" minLength="5" maxLength="80" placeholder="Sites to see, foods to try, etc." />
+                            <textarea onChange={this.handleChange} value={this.state.userInputAdvice} type="text" id="advice" name="userInputAdvice" minLength="5" maxLength="60" placeholder="Sites to see, foods to try, etc." />
 
                             <button onClick={ this.buttonSubmit } className="submitButton">Post it!</button>
                         </form>
@@ -133,10 +134,7 @@ class App extends Component {
                 deleteAdvice= { this.deleteSuggestion } 
                 />
 
-                <footer>
-                        <p><span role="img" aria-label="heart emoji">♥️</span> Created by <a href="https://github.com/dubzku" target="_blank" rel="noopener noreferrer">Winnie Ku</a></p>
-                        <p className="logoAttribution"><span role="img" aria-label="airplane emoji">✈</span> Icon by <a href="https://www.flaticon.com/free-icon/paper-plane_312619?term=paper%20airplane&page=1&position=46" target="_blank" rel="noopener noreferrer" title="Eight Black Dots">Eight Black Dots</a> from <a href="https://www.flaticon.com/" target="_blank" rel="noopener noreferrer" title="Flaticon">www.flaticon.com</a></p>
-                </footer>
+                <Footer />
 
             </div>
     );

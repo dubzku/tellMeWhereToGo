@@ -4,11 +4,11 @@ const TravelAdvice = (props) => {
     return (
         <main>
             <div className="wrapper">
-                <ul className="container">
+                <ul className="postItContainer">
                     {
                     props.displayedAdvice.map ( (suggestion) => {
                         return (
-                            <li key={suggestion.key}>
+                            <li key={suggestion.key} className="postItNotes">
                                 
                                     <h2>{suggestion.destination}</h2>
                                     <p>{suggestion.advice}</p>
