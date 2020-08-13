@@ -4,6 +4,7 @@ import firebase from "./firebase";
 import TravelAdvice from "./TravelAdvice"
 import Footer from "./Footer";
 import paperPlane from "./assets/origami.png";
+import swal from 'sweetalert';
 import "./App.css";
 
 
@@ -27,7 +28,6 @@ class App extends Component {
         // pulling in data from Firebase and setting it to state 
         dbRef.on("value", (snapshot) => {
             const data = snapshot.val();
-            console.log(data);
 
             const newSuggestions = [];
 
@@ -70,7 +70,7 @@ class App extends Component {
         const apiKey = `563492ad6f917000010000017a8698fdc0aa4677b4cda27aa4991d1a`;
 
         !document.getElementById("destination").value || !document.getElementById("advice").value
-        ? alert("Please fill in both fields!")
+        ? swal("Oops!", "Please fill in both fields!", "error")
         : axios({
             url: `https://api.pexels.com/v1/search`,
             method: `GET`,
@@ -85,7 +85,6 @@ class App extends Component {
             }
         })
         .then ((response) => {
-            console.log(response);
             this.setState({
                 destinationPhoto: response.data.photos[0].src.landscape,
                 photographerName: response.data.photos[0].photographer
@@ -109,7 +108,7 @@ class App extends Component {
             
         })
         .catch((error) => {
-            alert("Are you sure that's a real place?")
+            swal("Hmm...", "...are you sure that's a real place?", "warning");
         });
     }
     
