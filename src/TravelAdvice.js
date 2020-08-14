@@ -17,7 +17,7 @@ const TravelAdvice = (props) => {
                                     <div className="imageContainer">
                                         <img src={suggestion.photo} alt={`Photograph of ${suggestion.destination}, taken by ${suggestion.photographerName}`}/>
                                     </div>
-                                    <button onClick={ () => props.deleteAdvice (suggestion.key) } className="deletePostIt"><FontAwesomeIcon icon={faTimes} /></button>
+                                    <button onClick={ () => props.deleteAdvice (suggestion.key) } className="deletePostIt"><span className="srOnly">Times/X icon from Font Awesome for deleting the suggestion</span><FontAwesomeIcon icon={faTimes} /></button>
                                 
                             </li>
                         )
