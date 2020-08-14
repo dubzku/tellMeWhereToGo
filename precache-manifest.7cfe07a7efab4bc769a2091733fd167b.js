@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5bb9ca1720ea0c9894ec5821658822e8",
+    "revision": "e7c3d05e229cd3e00d0708e2ebf0951e",
     "url": "/winnieKuProjectFive/index.html"
   },
   {
-    "revision": "f54087a808cc8496b7ad",
-    "url": "/winnieKuProjectFive/static/css/main.b4bfb565.chunk.css"
+    "revision": "897bf5c894bdd99ae39e",
+    "url": "/winnieKuProjectFive/static/css/main.fceeafc4.chunk.css"
   },
   {
     "revision": "1506085e226da8395f1c",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/winnieKuProjectFive/static/js/2.916d6b60.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f54087a808cc8496b7ad",
-    "url": "/winnieKuProjectFive/static/js/main.2a0f71ac.chunk.js"
+    "revision": "897bf5c894bdd99ae39e",
+    "url": "/winnieKuProjectFive/static/js/main.9bd2b0b5.chunk.js"
   },
   {
     "revision": "f0137b91829c47c0351a",
