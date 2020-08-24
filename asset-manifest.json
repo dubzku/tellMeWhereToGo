@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/winnieKuProjectFive/static/css/main.fceeafc4.chunk.css",
-    "main.js": "/winnieKuProjectFive/static/js/main.9bd2b0b5.chunk.js",
-    "main.js.map": "/winnieKuProjectFive/static/js/main.9bd2b0b5.chunk.js.map",
-    "runtime-main.js": "/winnieKuProjectFive/static/js/runtime-main.1aeff3f1.js",
-    "runtime-main.js.map": "/winnieKuProjectFive/static/js/runtime-main.1aeff3f1.js.map",
-    "static/js/2.916d6b60.chunk.js": "/winnieKuProjectFive/static/js/2.916d6b60.chunk.js",
-    "static/js/2.916d6b60.chunk.js.map": "/winnieKuProjectFive/static/js/2.916d6b60.chunk.js.map",
-    "index.html": "/winnieKuProjectFive/index.html",
-    "precache-manifest.aa4be82b7fdda33b76848ff72efef977.js": "/winnieKuProjectFive/precache-manifest.aa4be82b7fdda33b76848ff72efef977.js",
-    "service-worker.js": "/winnieKuProjectFive/service-worker.js",
-    "static/css/main.fceeafc4.chunk.css.map": "/winnieKuProjectFive/static/css/main.fceeafc4.chunk.css.map",
-    "static/js/2.916d6b60.chunk.js.LICENSE.txt": "/winnieKuProjectFive/static/js/2.916d6b60.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/winnieKuProjectFive/static/media/linedpaper.8939bf29.png",
-    "static/media/origami.png": "/winnieKuProjectFive/static/media/origami.c4714cd6.png"
+    "main.css": "/tellMeWhereToGo/static/css/main.62ad6772.chunk.css",
+    "main.js": "/tellMeWhereToGo/static/js/main.22213238.chunk.js",
+    "main.js.map": "/tellMeWhereToGo/static/js/main.22213238.chunk.js.map",
+    "runtime-main.js": "/tellMeWhereToGo/static/js/runtime-main.24c4b290.js",
+    "runtime-main.js.map": "/tellMeWhereToGo/static/js/runtime-main.24c4b290.js.map",
+    "static/js/2.3513bf70.chunk.js": "/tellMeWhereToGo/static/js/2.3513bf70.chunk.js",
+    "static/js/2.3513bf70.chunk.js.map": "/tellMeWhereToGo/static/js/2.3513bf70.chunk.js.map",
+    "index.html": "/tellMeWhereToGo/index.html",
+    "precache-manifest.ca525cc699df127dced7e02f1c336678.js": "/tellMeWhereToGo/precache-manifest.ca525cc699df127dced7e02f1c336678.js",
+    "service-worker.js": "/tellMeWhereToGo/service-worker.js",
+    "static/css/main.62ad6772.chunk.css.map": "/tellMeWhereToGo/static/css/main.62ad6772.chunk.css.map",
+    "static/js/2.3513bf70.chunk.js.LICENSE.txt": "/tellMeWhereToGo/static/js/2.3513bf70.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/tellMeWhereToGo/static/media/linedpaper.8939bf29.png",
+    "static/media/origami.png": "/tellMeWhereToGo/static/media/origami.c4714cd6.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.1aeff3f1.js",
-    "static/js/2.916d6b60.chunk.js",
-    "static/css/main.fceeafc4.chunk.css",
-    "static/js/main.9bd2b0b5.chunk.js"
+    "static/js/runtime-main.24c4b290.js",
+    "static/js/2.3513bf70.chunk.js",
+    "static/css/main.62ad6772.chunk.css",
+    "static/js/main.22213238.chunk.js"
   ]
 }
